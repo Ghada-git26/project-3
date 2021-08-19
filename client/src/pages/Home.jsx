@@ -1,13 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-class Home extends React.Component {
-  render() {
-    return (
+const Home = () => {
+  return (
+    <nav className="Navbar">
       <div>
-        <h1>Home Page ∆</h1>
+      <Link exact to="/">
+        <h3 className="logo">Gluten Free Up</h3>
+      </Link>
+        
       </div>
-    );
-  }
-}
+
+    </nav>
+  );
+};
 
 export default Home;

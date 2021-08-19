@@ -44,12 +44,36 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
-  // getItems() {
-  //   return service
-  //     .get("/api/items")
-  //     .then((res) => res.data)
-  //     .catch(errorHandler);
-  // },
+  getRecipes() {
+    return service
+      .get("/api/recipes")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+
+  removeRecipe(id) {
+    return service
+      .delete(`/api/recipes/${id}`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  updateRecipe(id, data) {
+    return service
+      .patch(`/api/recipes/${id}`, data)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+
+  addRecipe(data) {
+    return service
+      .post("/api/recipes", data)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
 };
+
 
 export default apiHandler;
