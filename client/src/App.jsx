@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import RecipeDispaly from "./components/Forms/RecipeDispaly";
+import "./styles/AllRecipes.css"
 
 function App() {
   return (

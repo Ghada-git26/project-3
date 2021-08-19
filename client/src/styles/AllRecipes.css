@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&display=swap');
+.categories {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.Recipes-Title {
+    margin-bottom: 30px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 32px;
+    display: inline-block;
+    margin-left: -45px;
+}
+
+.container {
+    border: 1px white solid;
+    border-radius: 10px;
+    box-shadow: 2px 1px 5px grey;
+    padding: 15px;
+}
+
+.recipeInfo {
+    position: relative;
+}
+
+.RecipesDetails {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    color: white;
+}
+
+.OneRecipe {
+    margin-bottom: 20px;
+}
+
+.RecipeName {
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+}
+
+.container hr {
+    border-top: 1px solid black;
+    margin-bottom: 20px;
+}
+
+.CategorieName {
+    text-align: center;
+    text-decoration: solid;
+}
+
+.Hat {
+    width: 100px;
+    display: unset;
+}
+
+.page-logo {
+    margin-top: -80px;
+    margin-left: 20px;
+}

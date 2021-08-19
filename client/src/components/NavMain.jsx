@@ -1,9 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
-
 import apiHandler from "../api/apiHandler";
-
 import "../styles/NavMain.css";
 
 const NavMain = (props) => {
@@ -22,7 +20,6 @@ const NavMain = (props) => {
 
   return (
     <nav className="NavMain">
-      
       <ul className="nav-list">
         {context.isLoggedIn && (
           <React.Fragment>
@@ -45,10 +42,10 @@ const NavMain = (props) => {
               <NavLink to="/signup">Create account</NavLink>
             </li>
             <li>
-            <NavLink to={`/Recipes`}>All Recipes</NavLink>
+              <NavLink to={`/Recipes`}>All Recipes</NavLink>
             </li>
             <li>
-            <NavLink to={`/`}>Back to Home-Page</NavLink>
+              <NavLink to={`/`}>Home</NavLink>
             </li>
           </React.Fragment>
         )}

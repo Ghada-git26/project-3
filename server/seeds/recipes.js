@@ -194,6 +194,7 @@ const recipes = [{
         name: "Breakfast super-shake",
         category: "Beverage",
         prep: 5,
+        cook: 0,
         difficulty: 1,
         nutrition: {
             kcal: 391,
@@ -223,6 +224,7 @@ const recipes = [{
         name: "Two-minute breakfast smoothie",
         category: "Beverage",
         prep: 2,
+        cook: 0,
         difficulty: 1,
         nutrition: {
             kcal: 156,
@@ -247,6 +249,7 @@ const recipes = [{
         name: "Peach Melba smoothie",
         category: "Beverage",
         prep: 5,
+        cook: 0,
         difficulty: 1,
         nutrition: {
             kcal: 161,
