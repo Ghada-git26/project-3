@@ -16,6 +16,17 @@
     color: white;
 }
 
+.one-recipe-title {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.one-recipe-title>.main-content {
+    margin-top: -15px;
+}
+
 .OneRecipe-Info {
     position: relative;
 }

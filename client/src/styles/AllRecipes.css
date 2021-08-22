@@ -12,7 +12,7 @@
     font-family: 'Dancing Script', cursive;
     font-size: 32px;
     display: inline-block;
-    margin-left: -45px;
+    margin-left: -30px;
 }
 
 .container {
@@ -20,6 +20,7 @@
     border-radius: 10px;
     box-shadow: 2px 1px 5px grey;
     padding: 15px;
+    background-color: white;
 }
 
 .recipeInfo {
@@ -42,8 +43,10 @@
 
 .RecipeName {
     margin-bottom: 10px;
-    display: block;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .container hr {
@@ -57,7 +60,7 @@
 }
 
 .Hat {
-    width: 100px;
+    width: 75px;
     display: unset;
 }
 
@@ -75,20 +78,31 @@
 }
 
 .one-recipe-full {
-    max-width: 850px;
+    max-width: fit-content;
     margin: auto;
+    border: 1px white solid;
+    border-radius: 10px;
+    box-shadow: 2px 1px 5px grey;
+    border-collapse: collapse;
+    margin-bottom: 20px;
 }
 
 .recipe-image-left,
 .recipe-details-full {
     min-width: 450px;
-    border: beige 1px solid;
-    border-collapse: collapse;
+}
+
+.recipe-image-left,
+.OneRecipe-Img {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .recipe-details-full {
     padding: 20px;
-    background-color: rgb(240, 236, 203);
+    background-color: white;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .OneRecipe-Img {

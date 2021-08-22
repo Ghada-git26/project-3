@@ -31,7 +31,8 @@ html {
 body {
     min-height: 100vh;
     text-rendering: optimizeSpeed;
-    line-height: 1.5
+    line-height: 1.5;
+    background-color: rgb(244 238 238 / 39%);
 }
 
 ul[class],

@@ -1,9 +1,14 @@
 import React, { Component } from "react";
-import { Link, Route } from "react-router-dom";
 import apiHandler from '../../api/apiHandler'
 import Hat from "../../assets/chefHat.png"
+import MiniRecipe from "./miniRecipe";
 
 class RecipeDispaly extends Component {
+    constructor(props) {
+        super(props);
+        this.initData = this.initData.bind(this);
+    }
+
     state = {
         Recipes: {
             mainDishes: [],
@@ -13,6 +18,10 @@ class RecipeDispaly extends Component {
     }
 
     componentDidMount() {
+        this.initData();
+    }
+
+    initData() {
         apiHandler.getRecipes()
             .then((response) => {
                 this.setState({
@@ -22,24 +31,6 @@ class RecipeDispaly extends Component {
             .catch((error) => {
                 console.log(error);
             })
-    }
-
-    getRecipeFromObj(Recp) {
-        return (
-            <div className="OneRecipe">
-                
-                <Link to={`/Recipes/${Recp._id}`} className="RecipeName">
-                    {Recp.name}
-                </Link>
-                <div className="recipeInfo">
-                    <img src={Recp.image} alt="" className="RecipeImg" />
-                    <div className="RecipesDetails">
-                        <p>Preparation time : {Recp.prep} min</p>
-                        <p>Cooking time : {Recp.cook} min</p>
-                        <p>Difficulty : <span className={("difficulty-" + Recp.difficulty)}></span></p>
-                    </div>
-                </div>
-            </div>);
     }
 
     render() {
@@ -55,7 +46,7 @@ class RecipeDispaly extends Component {
                         <hr></hr>
                         {this.state.Recipes.mainDishes.map((Recp) => {
                             return (
-                                this.getRecipeFromObj(Recp)
+                                <MiniRecipe key={Recp._id} recipe={Recp} initData={this.initData} />
                             )
                         })}
                     </div>
@@ -64,7 +55,7 @@ class RecipeDispaly extends Component {
                         <hr></hr>
                         {this.state.Recipes.desserts.map((Recp) => {
                             return (
-                                this.getRecipeFromObj(Recp)
+                                <MiniRecipe key={Recp._id} recipe={Recp} initData={this.initData} />
                             )
                         })}
                     </div>
@@ -73,7 +64,7 @@ class RecipeDispaly extends Component {
                         <hr></hr>
                         {this.state.Recipes.beverages.map((Recp) => {
                             return (
-                                this.getRecipeFromObj(Recp)
+                                <MiniRecipe key={Recp._id} recipe={Recp} initData={this.initData} />
                             )
                         })}
                     </div>

@@ -58,6 +58,20 @@ const apiHandler = {
             .catch(errorHandler);
     },
 
+    setFavRecipe(id) {
+        return service
+            .get(`/api/recipes/setFavourite/${id}`)
+            .then((res) => res.data)
+            .catch(errorHandler);
+    },
+
+    unsetFavRecipe(id) {
+        return service
+            .get(`/api/recipes/unsetFavourite/${id}`)
+            .then((res) => res.data)
+            .catch(errorHandler);
+    },
+
     postRecipe(recipe) {
         return service
             .post("/api/recipes", recipe)
