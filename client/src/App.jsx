@@ -10,6 +10,7 @@ import RecipeDispaly from "./components/Forms/RecipeDispaly";
 import "./styles/AllRecipes.css"
 import OneRecipe from "./components/Forms/OneRecipe";
 import RecipeForm from "./components/Forms/RecipeForm";
+import AdminRoute from "./components/AdminRoute";
 
 function App() {
   return (
@@ -20,8 +21,8 @@ function App() {
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/Recipes" component={RecipeDispaly} />
-        <Route exact path="/Recipes/create"  component={(props) => <RecipeForm {...props} key={window.location.pathname}/>}  />
-        <Route exact path="/Recipes/update/:id" component={(props) => <RecipeForm {...props} key={window.location.pathname}/>} />
+        <AdminRoute exact path="/Recipes/create"  component={(props) => <RecipeForm {...props} key={window.location.pathname}/>}  />
+        <AdminRoute exact path="/Recipes/update/:id" component={(props) => <RecipeForm {...props} key={window.location.pathname}/>} />
         <Route exact path="/Recipes/:id" component={OneRecipe} />
         <ProtectedRoute exact path="/profile" component={Profile} />
       </Switch>

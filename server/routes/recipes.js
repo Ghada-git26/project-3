@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Recipe = require("../models/Recipe");
 const uploader = require("../config/cloudinary");
+const auth = require("../middlewares/requireAuth");
 
 //get all recipes
 
@@ -26,7 +27,7 @@ router.get("/:id", (req, res, next) => {
 });
 
 //upload image
-router.post("/", uploader.single("image"), (req, res, next) => {
+router.post("/", auth.requireAdmin, uploader.single("image"), (req, res, next) => {
     if (req.file) {
         req.body.image = req.file.path;
     } else {
@@ -40,7 +41,7 @@ router.post("/", uploader.single("image"), (req, res, next) => {
         .catch(next);
 });
 
-router.patch("/:id", uploader.single("image"), (req, res, next) => {
+router.patch("/:id", auth.requireAdmin, uploader.single("image"), (req, res, next) => {
 
     if (req.file) {
         req.body.image = req.file.path;
@@ -58,7 +59,7 @@ router.patch("/:id", uploader.single("image"), (req, res, next) => {
 });
 
 //delete a recipe
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", auth.requireAdmin, (req, res, next) => {
     Recipe.findById(req.params.id)
         .then((recipeDocument) => {
             if (!recipeDocument) {

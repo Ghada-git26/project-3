@@ -21,6 +21,12 @@ const NavMain = (props) => {
   return (
     <nav className="NavMain">
       <ul className="nav-list">
+        <li>
+          <NavLink to={`/`}>Home</NavLink>
+        </li>
+        <li>
+          <NavLink to={`/Recipes`}>All Recipes</NavLink>
+        </li>
         {context.isLoggedIn && (
           <React.Fragment>
             <li>
@@ -28,6 +34,12 @@ const NavMain = (props) => {
                 {context.user && context.user.email}
               </NavLink>
             </li>
+            {(
+              context.isAdmin &&
+              <li>
+                <NavLink to={`/Recipes/create`}>Add more Recipes</NavLink>
+              </li>
+            )}
             <li>
               <p onClick={handleLogout}>Logout</p>
             </li>
@@ -40,16 +52,6 @@ const NavMain = (props) => {
             </li>
             <li>
               <NavLink to="/signup">Create account</NavLink>
-            </li>
-            <li>
-              <NavLink to={`/Recipes`}>All Recipes</NavLink>
-            </li>
-            <li>
-              <NavLink to={`/Recipes/create`}>Add more Recipes</NavLink>
-            </li>
-            
-            <li>
-              <NavLink to={`/`}>Home</NavLink>
             </li>
           </React.Fragment>
         )}

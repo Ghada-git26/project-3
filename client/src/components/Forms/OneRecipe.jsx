@@ -3,12 +3,13 @@ import { NavLink, Link, Route } from "react-router-dom";
 import apiHandler from '../../api/apiHandler'
 import Hat from "../../assets/chefHat.png"
 import "../../styles/OneRecipe.css"
+import { withUser } from "../Auth/withUser";
+import FavoriteBtn from "../../pages/FavoriteBtn";
 
 class OneRecipe extends Component {
     constructor(props) {
         super(props)
         this.removeRecipe = this.removeRecipe.bind(this);
-
     }
     state = {
         Recipe: null,
@@ -27,7 +28,7 @@ class OneRecipe extends Component {
     }
 
     async removeRecipe() {
-        
+
         await apiHandler.removeRecipe(this.props.match.params.id);
         this.props.history.push("/Recipes");
     }
@@ -48,11 +49,12 @@ class OneRecipe extends Component {
                                         <div style={{ 'background-image': `url(${this.state.Recipe.image})` }} className="OneRecipe-Img" > </div>
                                     </div>
                                     <div className="recipe-details-full">
-                                        <h2>{this.state.Recipe.name}</h2>
-                                        <div className="">
+                                        <h2>{this.state.Recipe.name}<FavoriteBtn className="FavBtn"/></h2>
+                                        <div className="mainInfo">
                                             <p>{this.state.Recipe.prep}min of Prepration</p>
                                             <p>{this.state.Recipe.cook} min of cooking</p>
                                             <p>Difficulty : <span className={("difficulty-" + this.state.Recipe.difficulty)}></span></p>
+                                           
                                         </div>
                                         <table className="nutritious-values">
                                             <tr>
@@ -95,10 +97,14 @@ class OneRecipe extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <button type="button" className="btn-remove" onClick={this.removeRecipe}>Delete Recipe</button>
-                            <NavLink to={`/Recipes/update/${this.props.match.params.id}`}>Edit Recipes</NavLink>
-                        </div>
+                        {(
+                            this.props.context.isAdmin &&
+                            <div>
+                                <button type="button" className="btn-remove" onClick={this.removeRecipe}>Delete Recipe</button>
+                                <NavLink to={`/Recipes/update/${this.props.match.params.id}`}>Edit Recipes</NavLink>
+                            </div>
+                        )}
+
                     </div>
                 </div>
             )
@@ -115,4 +121,4 @@ class OneRecipe extends Component {
 }
 
 
-export default OneRecipe
+export default withUser(OneRecipe)
