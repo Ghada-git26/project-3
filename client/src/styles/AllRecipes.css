@@ -65,3 +65,89 @@
     margin-top: -80px;
     margin-left: 20px;
 }
+
+.flex {
+    display: flex;
+}
+
+.felx-row {
+    flex-direction: row;
+}
+
+.one-recipe-full {
+    max-width: 850px;
+    margin: auto;
+}
+
+.recipe-image-left,
+.recipe-details-full {
+    min-width: 450px;
+    border: beige 1px solid;
+    border-collapse: collapse;
+}
+
+.recipe-details-full {
+    padding: 20px;
+    background-color: rgb(240, 236, 203);
+}
+
+.OneRecipe-Img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.recipe-details-full h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.difficulty-1,
+.difficulty-2,
+.difficulty-3 {
+    display: inline-block;
+    height: 25px;
+    background-image: url('../assets/chefHat.png');
+    margin-bottom: -10px;
+}
+
+.difficulty-1 {
+    width: 20px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+}
+
+.difficulty-2 {
+    width: 40px;
+    background-size: 20px;
+    background-repeat: repeat-x;
+}
+
+.difficulty-3 {
+    width: 60px;
+    background-size: 20px;
+    background-repeat: repeat-x;
+}
+
+.ingredient-list li {
+    margin-left: 20px;
+}
+
+.ingredient-list {
+    list-style: initial;
+    line-height: 30px;
+}
+
+.nutritious-values td,
+.nutritious-values th,
+.nutritious-values {
+    border: 1px solid lightgray;
+    text-align: center;
+}
+
+.nutritious-values {
+    width: 100%;
+    text-align: center;
+}

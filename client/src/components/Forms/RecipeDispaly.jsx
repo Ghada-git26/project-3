@@ -36,7 +36,7 @@ class RecipeDispaly extends Component {
                     <div className="RecipesDetails">
                         <p>Preparation time : {Recp.prep} min</p>
                         <p>Cooking time : {Recp.cook} min</p>
-                        <p>Difficulty : {Recp.difficulty}</p>
+                        <p>Difficulty : <span className={("difficulty-" + Recp.difficulty)}></span></p>
                     </div>
                 </div>
             </div>);

@@ -45,6 +45,10 @@ const NavMain = (props) => {
               <NavLink to={`/Recipes`}>All Recipes</NavLink>
             </li>
             <li>
+              <NavLink to={`/Recipes/create`}>Add more Recipes</NavLink>
+            </li>
+            
+            <li>
               <NavLink to={`/`}>Home</NavLink>
             </li>
           </React.Fragment>

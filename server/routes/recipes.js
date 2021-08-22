@@ -5,7 +5,7 @@ const Recipe = require("../models/Recipe");
 
 //get all recipes
 
-router.get("/", async function (req, res, next) {
+router.get("/", async function(req, res, next) {
     var mainDishes = await Recipe.find({ category: 'Main dish' });
     var desserts = await Recipe.find({ category: 'Dessert' });
     var beverages = await Recipe.find({ category: 'Beverage' });
@@ -28,16 +28,12 @@ router.get("/:id", (req, res, next) => {
 
 
 //Create recipe
-
 router.post("/", (req, res, next) => {
     const updateValues = req.body;
+    console.log(updateValues);
     Recipe.create(updateValues)
         .then((recipeDocument) => {
-            recipeDocument
-                .then((recipe) => {
-                    res.status(201).json(recipe);
-                })
-                .catch(next);
+            res.status(201).json(recipeDocument);
         })
         .catch(next);
 });
@@ -60,7 +56,7 @@ router.post("/update/:id", (req, res) => {
 router.patch(
     "/:id",
     (req, res, next) => {
-        const recipe = { ...req.body };
+        const recipe = {...req.body };
 
         Item.findById(req.params.id)
             .then((recipeDocument) => {

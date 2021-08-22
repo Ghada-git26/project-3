@@ -1,0 +1,43 @@
+.One-Recipe {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-height: 80%;
+    margin-left: 40px;
+}
+
+.OneRecipe-Details {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 195px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    color: white;
+}
+
+.OneRecipe-Info {
+    position: relative;
+}
+
+table,
+td,
+th {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.ingredients {
+    border: beige 1px solid;
+}
+
+.Cooking-Img {
+    height: 800px;
+    width: 700px;
+    margin-top: 60px
+}
