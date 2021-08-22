@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import { NavLink, Link, Route } from "react-router-dom";
-import apiHandler from '../../api/apiHandler' 
+import apiHandler from '../../api/apiHandler'
 import Hat from "../../assets/chefHat.png"
-import Cooking from "../../assets/Cooking.jpg"
 import "../../styles/OneRecipe.css"
 
 class OneRecipe extends Component {
+    constructor(props) {
+        super(props)
+        this.removeRecipe = this.removeRecipe.bind(this);
+
+    }
     state = {
         Recipe: null,
     }
@@ -20,6 +24,12 @@ class OneRecipe extends Component {
             .catch((error) => {
                 console.log(error);
             })
+    }
+
+    async removeRecipe() {
+        
+        await apiHandler.removeRecipe(this.props.match.params.id);
+        this.props.history.push("/Recipes");
     }
 
     render() {
@@ -85,9 +95,10 @@ class OneRecipe extends Component {
                                 </div>
                             </div>
                         </div>
-
-                        <button>Delete Recipe</button>
-                        <NavLink to={`/Recipes/update/${this.props.match.params.id}`}>Edit Recipes</NavLink>
+                        <div>
+                            <button type="button" className="btn-remove" onClick={this.removeRecipe}>Delete Recipe</button>
+                            <NavLink to={`/Recipes/update/${this.props.match.params.id}`}>Edit Recipes</NavLink>
+                        </div>
                     </div>
                 </div>
             )

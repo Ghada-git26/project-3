@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Recipe = require("../models/Recipe");
-
+const uploader = require("../config/cloudinary");
 
 //get all recipes
 
@@ -25,62 +25,46 @@ router.get("/:id", (req, res, next) => {
         .catch(next);
 });
 
+//upload image
+router.post("/", uploader.single("image"), (req, res, next) => {
+    if (req.file) {
+        req.body.image = req.file.path;
+    } else {
+        req.body.image = undefined;
+    }
 
-
-//Create recipe
-router.post("/", (req, res, next) => {
-    const updateValues = req.body;
-    console.log(updateValues);
-    Recipe.create(updateValues)
+    Recipe.create(req.body)
         .then((recipeDocument) => {
             res.status(201).json(recipeDocument);
         })
         .catch(next);
 });
 
+router.patch("/:id", uploader.single("image"), (req, res, next) => {
 
+    if (req.file) {
+        req.body.image = req.file.path;
+    } else {
+        req.body.image = undefined;
+    }
 
-
-router.post("/update/:id", (req, res) => {
     Recipe.findByIdAndUpdate(req.params.id, req.body)
         .then(() => {
-            res.redirect("/recipe");
+            return res.status(200).json({ message: "Recipe Updated" });
         })
         .catch((error) => {
-            console.log(error);
+            return res.status(500).json({ message: "Unexpected Error", error: error });
         });
 });
 
-//update recipe
-
-router.patch(
-    "/:id",
-    (req, res, next) => {
-        const recipe = {...req.body };
-
-        Item.findById(req.params.id)
-            .then((recipeDocument) => {
-                if (!recipeDocument)
-                    return res.status(404).json({ message: "Item not found" });
-
-                Recipe.findByIdAndUpdate(req.params.id, item, { new: true })
-                    .populate("creator")
-                    .then((updatedDocument) => {
-                        return res.status(200).json(updatedDocument);
-                    })
-                    .catch(next);
-            })
-            .catch(next);
-    }
-);
 //delete a recipe
 router.delete("/:id", (req, res, next) => {
     Recipe.findById(req.params.id)
         .then((recipeDocument) => {
             if (!recipeDocument) {
-                return res.status(404).json({ message: "Item not found" });
+                return res.status(404).json({ message: "Recipe not found" });
             }
-            Item.findByIdAndDelete(req.params.id)
+            Recipe.findByIdAndDelete(req.params.id)
                 .then(() => {
                     return res.sendStatus(204);
                 })
