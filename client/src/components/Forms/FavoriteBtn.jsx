@@ -15,25 +15,25 @@ class FavoriteBtn extends Component {
             recipe: recipe
         });
     }
+
     state = {};
     callback = null;
 
     async handleFavouriteClick() {
         if (this.state.recipe.isUserFavourite) {
             await apiHandler.unsetFavRecipe(this.state.recipe._id);
-            if (this.callback) {
-                this.callback();
-            }
+            
         } else {
             await apiHandler.setFavRecipe(this.state.recipe._id);
-            if (this.callback) {
-                this.callback();
-            }
         }
         this.state.recipe.isUserFavourite = !this.state.recipe.isUserFavourite;
         this.setState({
             recipe: {...this.state.recipe}
-        })
+        });
+        
+        if (this.callback) {
+            this.callback();
+        }
     }
 
     render() {

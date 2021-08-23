@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 class MiniRecipe extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
     }
 
     state = {
-        recipe: this.props.recipe
+        recipe: this.props.recipe,
+        initData: this.props.initData
     }
 
     render() {
@@ -19,7 +19,7 @@ class MiniRecipe extends Component {
                     <Link to={`/Recipes/${this.state.recipe._id}`} >
                         {this.state.recipe.name}
                     </Link>
-                    <FavoriteBtn key={this.state.recipe._id} recipe={this.state.recipe} clickCallback={this.props.initData} className="FavBtn" />
+                    <FavoriteBtn key={this.state.recipe._id} recipe={this.state.recipe} callback={this.state.initData} className="FavBtn" />
                 </div>
 
                 <div className="recipeInfo">

@@ -65,6 +65,13 @@ const apiHandler = {
             .catch(errorHandler);
     },
 
+    getFavRecipe() {
+        return service
+            .get(`/api/recipes/getFavourite/`)
+            .then((res) => res.data)
+            .catch(errorHandler);
+    },
+
     unsetFavRecipe(id) {
         return service
             .get(`/api/recipes/unsetFavourite/${id}`)
@@ -120,7 +127,14 @@ const apiHandler = {
         this.buildFormData(formData, data);
 
         return formData;
-    }
+    },
+
+    postRating(id, rating) {
+        return service
+            .post(`/api/recipes/rating/${id} `, rating)
+            .then((res) => res.data)
+            .catch(errorHandler);
+    },
 };
 
 

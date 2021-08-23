@@ -5,12 +5,14 @@ import Hat from "../../assets/chefHat.png"
 import "../../styles/OneRecipe.css"
 import { withUser } from "../Auth/withUser";
 import FavoriteBtn from "./FavoriteBtn";
+import RatingForm from "./RatingForm";
 
 class OneRecipe extends Component {
     constructor(props) {
         super(props)
         this.removeRecipe = this.removeRecipe.bind(this);
     }
+
     state = {
         Recipe: null,
     }
@@ -28,23 +30,8 @@ class OneRecipe extends Component {
     }
 
     async removeRecipe() {
-
         await apiHandler.removeRecipe(this.props.match.params.id);
         this.props.history.push("/Recipes");
-    }
-
-    async handleFavClick() {
-        if (this.state.Recipe.isUserFavourite) {
-            this.state.Recipe.isUserFavourite = false;
-            this.setState({
-                Recipe: { ...this.state.Recipe }
-            });
-        } else {
-            this.state.Recipe.isUserFavourite = true;
-            this.setState({
-                Recipe: { ...this.state.Recipe }
-            });
-        }
     }
 
     render() {
@@ -65,7 +52,7 @@ class OneRecipe extends Component {
                                     <div className="recipe-details-full">
                                         <div className="one-recipe-title">
                                             <h2>{this.state.Recipe.name}</h2>
-                                            <FavoriteBtn recipe={this.state.Recipe} clickCallback={this.handleFavClick} className="FavBtn" />
+                                            <FavoriteBtn recipe={this.state.Recipe} className="FavBtn" />
                                         </div>
                                         <div className="mainInfo">
                                             <p>{this.state.Recipe.prep}min of Prepration</p>
@@ -115,6 +102,24 @@ class OneRecipe extends Component {
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            {(
+                                this.state.Recipe.ratings.map((r) => {
+                                    return (
+                                        <p>{r.comment} - {r.rating} </p>
+                                    )
+                                })
+                            )}
+                        </div>
+                        {(
+                            !this.props.context.isLoggedIn &&
+                            <p>Log in in order to rate recipes !</p>
+                        )}
+                        {(
+                            this.props.context.isLoggedIn && this.state.Recipe.canComment &&
+                            <RatingForm recipeId={this.state.Recipe._id} />
+                        )}
+                        
                         {(
                             this.props.context.isAdmin &&
                             <div>
