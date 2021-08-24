@@ -3,6 +3,7 @@ import { withRouter, Redirect } from "react-router-dom";
 import apiHandler from "../../api/apiHandler";
 import { withUser } from "../Auth/withUser";
 
+
 class FormSignin extends Component {
   state = {
     email: "",
@@ -44,8 +45,9 @@ class FormSignin extends Component {
         <input type="password" id="password" name="password" />
         <button>Submit</button>
       </form>
-    );
-  }
+
+    )
+  };
 }
 
 export default withRouter(withUser(FormSignin));

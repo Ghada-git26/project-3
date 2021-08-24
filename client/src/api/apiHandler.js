@@ -46,14 +46,21 @@ const apiHandler = {
 
     getRecipes() {
         return service
-            .get("/api/recipes")
+            .get("/api/recipes/all")
             .then((res) => res.data)
             .catch(errorHandler);
     },
 
     getRecipe(id) {
         return service
-            .get(`/api/recipes/${id}`)
+            .get(`/api/recipes/GetRecipe/${id}`)
+            .then((res) => res.data)
+            .catch(errorHandler);
+    },
+
+    getSearchResults(searchValue) {
+        return service
+            .get(`/api/recipes/search/${searchValue}`)
             .then((res) => res.data)
             .catch(errorHandler);
     },

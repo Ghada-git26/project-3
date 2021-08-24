@@ -8,7 +8,7 @@ const auth = require("../middlewares/requireAuth");
 
 //get all recipes
 
-router.get("/", async function(req, res, next) {
+router.get("/all", async function(req, res, next) {
     try {
         var mainDishes = (await Recipe.find({ category: 'Main dish' })).map(o => o.toObject());
         var desserts = (await Recipe.find({ category: 'Dessert' })).map(o => o.toObject());
@@ -30,6 +30,30 @@ router.get("/", async function(req, res, next) {
 
 });
 
+router.get("/search/:searchValue", async function(req, res, next) {
+    try {
+        let results = [];
+        if (req.params.searchValue) {
+            results = (await Recipe.find({ $or: [{ "name": { $regex: req.params.searchValue } }, { "ingredients": { $regex: req.params.searchValue } }] })).map(o => o.toObject());
+        } else {
+            results = (await Recipe.find()).map(o => o.toObject());
+        }
+
+        //Setting conditions for selecting favorite recipes
+        if (req.session.currentUser) {
+            //Use of populate de display ech user's favorite recipe
+            var user = await User.findById(req.session.currentUser._id).populate('favoriteRecipes');
+            if (user && user.favoriteRecipes) {
+                await setFavorites(user, results);
+            }
+        }
+        res.status(200).json(results);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+
+});
+
 //function to check if a recipe is a favorite of a user
 async function setFavorites(user, recipes) {
     //gettig the id's of a user's favorite recipe
@@ -40,8 +64,6 @@ async function setFavorites(user, recipes) {
         }
     }
 }
-
-
 
 //upload image
 router.post("/", auth.requireAdmin, uploader.single("image"), (req, res, next) => {
@@ -62,8 +84,6 @@ router.patch("/:id", auth.requireAdmin, uploader.single("image"), (req, res, nex
 
     if (req.file) {
         req.body.image = req.file.path;
-    } else {
-        req.body.image = undefined;
     }
 
     Recipe.findByIdAndUpdate(req.params.id, req.body)
@@ -84,7 +104,7 @@ router.delete("/:id", auth.requireAdmin, (req, res, next) => {
             }
             Recipe.findByIdAndDelete(req.params.id)
                 .then(() => {
-                    return res.sendStatus(204);
+                    return res.sendStatus(204).json({ message: 'Recipe Deleted' });
                 })
                 .catch(next);
         })
@@ -128,7 +148,7 @@ router.get("/getFavourite", auth.requireAuth, async function(req, res, next) {
 });
 
 //Get oneRecipe
-router.get("/:id", async(req, res, next) => {
+router.get("/GetRecipe/:id", async(req, res, next) => {
     try {
         let recipe = await Recipe.findById(req.params.id)
             .populate({

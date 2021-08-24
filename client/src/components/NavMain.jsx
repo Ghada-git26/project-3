@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
+import SearchBar from "./Forms/SearchBar";
 import "../styles/NavMain.css";
 
 const NavMain = (props) => {
@@ -21,9 +22,11 @@ const NavMain = (props) => {
   return (
     <nav className="NavMain">
       <ul className="nav-list">
+        <SearchBar/>
         <li>
           <NavLink to={`/`}>Home</NavLink>
         </li>
+        
         <li>
           <NavLink to={`/Recipes`}>All Recipes</NavLink>
         </li>
