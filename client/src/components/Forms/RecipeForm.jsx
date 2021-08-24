@@ -125,8 +125,8 @@ class RecipeForm extends Component {
                 <form className="form">
                     <h2 className="title">{this.state.title}</h2>
 
-                    <div className="form-group">
-                        <label className="label" htmlFor="name">
+                    <div className="mb-3">
+                     <label className="form-label" htmlFor="name">
                             Name
                         </label>
                         <input
@@ -138,18 +138,18 @@ class RecipeForm extends Component {
                             required
                         />
                     </div>
-                    <div className="form-group">
-                        <label className="custom-upload label" htmlFor="image">
+                    <div className="mb-3">
+                        <label className="form-label" htmlFor="image">
                             Upload image
                         </label>
-                        <input className="input" id="image" type="file" onChange={this.handleChange} />
+                        <input className="form-control" id="image" type="file" onChange={this.handleChange} />
                     </div>
-                    <div className="form-group">
-                        <label className="label" htmlFor="category">
+                    <div className="mb-3">
+                        <label className="form-label" htmlFor="category">
                             Category
                         </label>
 
-                        <select id="category" value={this.state.category} onChange={this.handleChange} required>
+                        <select id="category" className="form-select" value={this.state.category} onChange={this.handleChange} required>
                             <option value="" disabled>
                                 Select a category
                             </option>
@@ -159,25 +159,25 @@ class RecipeForm extends Component {
                         </select>
                     </div>
 
-                    <div className="form-group">
-                        <label className="label" htmlFor="prep">
+                    <div className="mb-3">
+                        <label className="form-label" htmlFor="prep">
                             Preparation time
                         </label>
-                        <input value={this.state.prep} className="input" id="prep" type="number" onChange={this.handleChange} />
+                        <input className="form-control" value={this.state.prep} className="input" id="prep" type="number" onChange={this.handleChange} />
                     </div>
-                    <div className="form-group">
-                        <label className="label" htmlFor="cook">
+                    <div className="mb-3">
+                        <label className="form-label" htmlFor="cook">
                             Cooking time
                         </label>
-                        <input className="input" value={this.state.cook} id="cook" type="number" onChange={this.handleChange} />
+                        <input className="form-control" value={this.state.cook} id="cook" type="number" onChange={this.handleChange} />
                     </div>
 
-                    <div className="form-group">
-                        <label className="label" htmlFor="category">
+                    <div className="mb-3">
+                        <label className="form-label" htmlFor="category">
                             Difficulty
                         </label>
 
-                        <select id="difficulty" value={this.state.difficulty} onChange={this.handleChange} required>
+                        <select id="difficulty" className="form-select" value={this.state.difficulty} onChange={this.handleChange} required>
                             <option value="" disabled>
                                 Select a difficulty
                             </option>
@@ -186,43 +186,60 @@ class RecipeForm extends Component {
                             <option value="3">Challenging</option>
                         </select>
                     </div>
-                    <div className="form-group">
-                        <label className="label" htmlFor="cook">
+                    <div className="mb-3">
+                        <label className="form-label" htmlFor="cook">
                             Nutritious Values
                         </label>
+                        <div className="mb-3">
+                        <label className="form-label" htmlFor="kcal">
                         <input className="input" value={this.state.nutrition.kcal} id="kcal" type="number" onChange={this.handleNutritiousChange} placeholder="Kcal" />
+                        </label>
+                        </div>
+                        <div className="mb-3">
+                        <label className="form-label" htmlFor="carbs">
                         <input className="input" value={this.state.nutrition.carbs} id="carbs" type="number" onChange={this.handleNutritiousChange} placeholder="carbs" />
+                       </label>
+                        </div>
+                        <div className="mb-3">
+                        <label className="form-label" htmlFor="fiber">
                         <input className="input" value={this.state.nutrition.fiber} id="fiber" type="number" onChange={this.handleNutritiousChange} placeholder="fiber" />
+                        </label>
+                        </div>
+                        <div className="mb-3">
+                        <label className="form-label" htmlFor="protein">
                         <input className="input" value={this.state.nutrition.protein} id="protein" type="number" onChange={this.handleNutritiousChange} placeholder="protein" />
+                        </label>
+                        </div>
+                        <div className="mb-3">
+                        <label className="form-label" htmlFor="sugars">
                         <input className="input" value={this.state.nutrition.sugars} id="sugars" type="number" onChange={this.handleNutritiousChange} placeholder="sugars" />
+                        </label>
+                        </div>
+                        <div className="mb-3">
+                        <label className="form-label" htmlFor="salts">
                         <input className="input" value={this.state.nutrition.salts} id="salts" type="number" onChange={this.handleNutritiousChange} placeholder="salts" />
+                        </label>
+                        </div>
                     </div>
-                    <div className="form-group">
-                        <label className="label" htmlFor="ingredients">
+                    <div className="mb-3">
+                        <label className="form-label" htmlFor="ingredients">
                             Ingredients
                         </label>
                         {
                             this.state.ingredients.map((ing, i) => {
-                                return (<div key={i}>
-                                    <input
-                                        id="ingredients"
-                                        className="text-area"
-                                        placeholder="Add Recipe's Ingredients"
-                                        onChange={(e) => this.handleIngredientsChange(e, i)}
-                                        value={ing}
-                                    ></input>
-                                    <div className="btn-box">
-                                        <button
-                                            type="button"
-                                            className="mr10"
-                                            onClick={() => this.handleRemoveClick(i)}>Remove</button>
-                                    </div>
+                                return (
+                                <div  key={i} className="input-group mb-3">
+                                    <input 
+                                        type="text" className="form-control" onChange={(e) => this.handleIngredientsChange(e, i)}
+                                        value={ing} placeholder="Add Recipe's Ingredients"/>
+                                    <button class="btn btn-outline-danger" type="button"
+                                        onClick={() => this.handleRemoveClick(i)}>Remove</button>
                                 </div>)
                             })
                         }
-                        <button type="button" onClick={this.handleAddClick}>Add</button>
+                        <button type="button" className="btn btn-outline-primary" onClick={this.handleAddClick}>Add Ingredients</button>
                     </div>
-                    <button type="button" className="btn-submit" onClick={this.handleSubmit}>Submit</button>
+                    <button type="button" className="btn btn-outline-primary" onClick={this.handleSubmit}>Submit</button>
                 </form>
             </div>
         );

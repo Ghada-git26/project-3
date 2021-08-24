@@ -52,3 +52,78 @@ table {
     width: 700px;
     margin-top: 60px
 }
+
+.one-recipe-full {
+    max-width: fit-content;
+    margin: auto;
+}
+
+.recipe-image-left,
+.recipe-details-full {
+    min-width: 450px;
+}
+
+.rounded-div {
+    border: 1px white solid;
+    border-radius: 10px;
+    box-shadow: 2px 1px 5px grey;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+.rating-box {
+    max-width: 900px;
+    background-color: white;
+    padding: 10px;
+}
+
+.OneRecipe-Img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.recipe-image-left,
+.OneRecipe-Img {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.recipe-details-full {
+    padding: 20px;
+    background-color: white;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.nutritious-values {
+    width: 100%;
+    text-align: center;
+}
+
+.recipe-details-full h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.ingredient-list li {
+    margin-left: 20px;
+}
+
+.ingredient-list {
+    list-style: initial;
+    line-height: 30px;
+}
+
+.nutritious-values td,
+.nutritious-values th,
+.nutritious-values {
+    border: 1px solid lightgray;
+    text-align: center;
+}
+
+.rating-btns {
+    text-align: right;
+}

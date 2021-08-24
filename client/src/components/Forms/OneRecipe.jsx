@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import apiHandler from '../../api/apiHandler'
-import Hat from "../../assets/chefHat.png"
 import "../../styles/OneRecipe.css"
 import { withUser } from "../Auth/withUser";
 import FavoriteBtn from "./FavoriteBtn";
@@ -53,12 +52,8 @@ class OneRecipe extends Component {
                 <div>
                     <div className="AllRecipeDetails">
                         <div>
-                            <div className="page-logo" >
-                                <img src={Hat} alt="" className="Hat" />
-                                <h1 className="Recipes-Title">Gluten Free Recipes</h1>
-                            </div>
-                            <div className="one-recipe-full">
-                                <div className="flex felx-row">
+                            <div className="one-recipe-full rounded-div mb-2">
+                                <div className="flex">
                                     <div className="recipe-image-left">
                                         <div style={{ backgroundImage: `url(${this.state.Recipe.image})` }} className="OneRecipe-Img" > </div>
                                     </div>
@@ -115,38 +110,52 @@ class OneRecipe extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            {(
-                                this.state.Recipe.ratings.map((r) => {
-                                    return (
-                                        <div>
-                                            <p key={this.comment}>{r.comment} - {r.rating} </p>
-
-                                            {(
-                                                this.props.context.isAdmin &&
-                                                <button type="button" className="btn-submit" onClick={() => this.removeRating(r._id)}>Delete</button>
-                                            )}
-                                        </div>
-                                    )
-                                })
-                            )}
-                        </div>
-                        {(
-                            !this.props.context.isLoggedIn &&
-                            <p>Log in in order to rate recipes !</p>
-                        )}
-                        {(
-                            this.props.context.isLoggedIn && this.state.Recipe.canComment &&
-                            <RatingForm recipeId={this.state.Recipe._id} submitCallBack={this.initData}/>
-                        )}
-
                         {(
                             this.props.context.isAdmin &&
-                            <div>
-                                <button type="button" className="btn-remove" onClick={this.removeRecipe}>Delete Recipe</button>
-                                <NavLink to={`/Recipes/update/${this.props.match.params.id}`}>Edit Recipes</NavLink>
+                            <div className="text-center">
+                                <button type="button" className="btn btn-outline-danger m-2" onClick={this.removeRecipe}>Delete Recipe</button>
+                                <NavLink className="btn btn-outline-secondary m-2" to={`/Recipes/update/${this.props.match.params.id}`}>Edit Recipes</NavLink>
                             </div>
                         )}
+
+                        <div className="mt-2 rounded-div mb-5 rating-box">
+                            <div>
+                                {(
+                                    this.state.Recipe.ratings.map((r) => {
+                                        return (
+                                            <div className="border rounded m-1 p-2">
+                                                <div >
+                                                    <p>
+                                                        <small>
+                                                            {r.user.email}  : {r.rating} /5
+                                                        </small>
+                                                    </p>
+                                                    <div>
+                                                        {r.comment}
+
+                                                    </div>
+                                                </div>
+
+                                                {(
+                                                    this.props.context.isAdmin &&
+                                                    <div className="rating-btns">
+                                                        <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => this.removeRating(r._id)}>Delete</button>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )
+                                    })
+                                )}
+                            </div>
+                            {(
+                                !this.props.context.isLoggedIn &&
+                                <p className="mt-5">Log in in order to rate recipes !</p>
+                            )}
+                            {(
+                                this.props.context.isLoggedIn && this.state.Recipe.canComment &&
+                                <RatingForm recipeId={this.state.Recipe._id} submitCallBack={this.initData} />
+                            )}
+                        </div>
 
                     </div>
                 </div>

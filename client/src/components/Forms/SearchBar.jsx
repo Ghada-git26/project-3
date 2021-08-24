@@ -25,11 +25,14 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <div>
-                <input onChange={this.handleSearch}></input>
 
-                <button onClick={this.doSearch}>Search</button>
+            <div className="input-group mb-3">
+                <input onChange={this.handleSearch} type="text" className="form-control" placeholder="Search for a recipe" />
+                <button onClick={this.doSearch} className="btn btn-outline-secondary" type="button">
+                <i className="fa fa-search"></i>
+                </button>
             </div>
+
         );
     }
 }

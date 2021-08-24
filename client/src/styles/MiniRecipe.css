@@ -1,0 +1,29 @@
+.recipeInfo {
+    position: relative;
+}
+
+.RecipeName {
+    margin-bottom: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.RecipesDetails {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    color: white;
+}
+
+.MiniRecipe-Img {
+    min-width: 250px;
+    min-height: 250px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

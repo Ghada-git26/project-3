@@ -7,46 +7,14 @@
     margin: 20px;
 }
 
-.Recipes-Title {
-    margin-bottom: 30px;
-    font-family: 'Dancing Script', cursive;
-    font-size: 32px;
-    display: inline-block;
-    margin-left: -30px;
-}
-
-.container {
+.recipe-container {
     border: 1px white solid;
     border-radius: 10px;
     box-shadow: 2px 1px 5px grey;
     padding: 15px;
     background-color: white;
-}
-
-.recipeInfo {
-    position: relative;
-}
-
-.RecipesDetails {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 10px;
-    color: white;
-}
-
-.OneRecipe {
-    margin-bottom: 20px;
-}
-
-.RecipeName {
-    margin-bottom: 10px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 30px;
+    width: 450px;
 }
 
 .container hr {
@@ -59,109 +27,10 @@
     text-decoration: solid;
 }
 
-.Hat {
-    width: 75px;
-    display: unset;
-}
-
-.page-logo {
-    margin-top: -80px;
-    margin-left: 20px;
-}
-
 .flex {
     display: flex;
 }
 
 .felx-row {
     flex-direction: row;
-}
-
-.one-recipe-full {
-    max-width: fit-content;
-    margin: auto;
-    border: 1px white solid;
-    border-radius: 10px;
-    box-shadow: 2px 1px 5px grey;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.recipe-image-left,
-.recipe-details-full {
-    min-width: 450px;
-}
-
-.recipe-image-left,
-.OneRecipe-Img {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
-
-.recipe-details-full {
-    padding: 20px;
-    background-color: white;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-.OneRecipe-Img {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.recipe-details-full h2 {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.difficulty-1,
-.difficulty-2,
-.difficulty-3 {
-    display: inline-block;
-    height: 25px;
-    background-image: url('../assets/chefHat.png');
-    margin-bottom: -10px;
-}
-
-.difficulty-1 {
-    width: 20px;
-    background-size: 20px;
-    background-repeat: no-repeat;
-}
-
-.difficulty-2 {
-    width: 40px;
-    background-size: 20px;
-    background-repeat: repeat-x;
-}
-
-.difficulty-3 {
-    width: 60px;
-    background-size: 20px;
-    background-repeat: repeat-x;
-}
-
-.ingredient-list li {
-    margin-left: 20px;
-}
-
-.ingredient-list {
-    list-style: initial;
-    line-height: 30px;
-}
-
-.nutritious-values td,
-.nutritious-values th,
-.nutritious-values {
-    border: 1px solid lightgray;
-    text-align: center;
-}
-
-.nutritious-values {
-    width: 100%;
-    text-align: center;
 }

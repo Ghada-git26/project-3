@@ -12,6 +12,8 @@ import OneRecipe from "./components/Forms/OneRecipe";
 import RecipeForm from "./components/Forms/RecipeForm";
 import AdminRoute from "./components/AdminRoute";
 import Searchresults from "./components/Forms/SearchResults";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 function App() {
   return (

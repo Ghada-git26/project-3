@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FavoriteBtn from "./FavoriteBtn";
 import { Link } from "react-router-dom";
+import "../../styles/MiniRecipe.css";
 
 class MiniRecipe extends Component {
     constructor(props) {
@@ -23,7 +24,7 @@ class MiniRecipe extends Component {
                 </div>
 
                 <div className="recipeInfo">
-                    <img src={this.state.recipe.image} alt="" className="RecipeImg" />
+                    <div style={{ backgroundImage: `url(${this.state.recipe.image})` }} className="MiniRecipe-Img" > </div>
                     <div className="RecipesDetails">
                         <p>Preparation time : {this.state.recipe.prep} min</p>
                         <p>Cooking time : {this.state.recipe.cook} min</p>

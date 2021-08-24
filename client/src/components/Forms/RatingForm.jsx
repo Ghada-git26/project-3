@@ -32,7 +32,7 @@ class RatingForm extends Component {
             comment: this.state.comment,
         };
         await apiHandler.postRating(this.state.recipeId, rating);
-        if(this.submitCallBack){
+        if (this.submitCallBack) {
             this.submitCallBack();
         }
     }
@@ -41,20 +41,26 @@ class RatingForm extends Component {
     render() {
         return (
 
-            <div>
+            <div className="border rounded mt-3 p-2">
+                <p>Rate this Recipe !</p>
                 <form>
-                    <label for="rating">Rate</label>
-                    <select name="rating" value={this.state.rating} onChange={this.handleChange}>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <label for="comment">Comment</label>
-                    <textarea name="comment" value={this.state.comment} onChange={this.handleChange} required></textarea>
-                    <div class="UDlink">
-                        <button type="button" className="btn-submit" onClick={this.handleSubmit}>Submit</button>
+                    <div class="form-group">
+                        <label for="rating">Rate</label>
+                        <select className="form-control" name="rating" value={this.state.rating} onChange={this.handleChange}>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comment">Comment</label>
+                        <textarea className="form-control" name="comment" value={this.state.comment} onChange={this.handleChange} required></textarea>
+                    </div>
+                    <div class="mt-2 rating-btns">
+                        <button type="button" className="btn btn-sm btn-outline-secondary" onClick={this.handleSubmit}>Submit</button>
                     </div>
                 </form>
             </div>

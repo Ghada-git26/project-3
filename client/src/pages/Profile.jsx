@@ -10,7 +10,7 @@ import apiHandler from "../api/apiHandler";
 
 class Profile extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.initData = this.initData.bind(this);
   }
@@ -20,45 +20,45 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-   this.initData(); 
+    this.initData();
   }
 
-  initData(){
+  initData() {
     apiHandler.getFavRecipe(this.props.match.params.id)
-    .then((apiResponse) => {
-      const data = apiResponse;
-      this.setState({
-        favoriteRecipes: data,
+      .then((apiResponse) => {
+        const data = apiResponse;
+        this.setState({
+          favoriteRecipes: data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
   }
 
   render() {
     const { context } = this.props;
     const { user } = context;
     return (
-
-      <section className="Profile">
-        <div className="user-image round-image">
-          <h1>{user.username}</h1>
-        </div>
-
-        <div>
-
-          <section>
-            <div className="categories">
-              <div className="container">
-                {this.state.favoriteRecipes.map((Recp) => {
-                  return (
+      <section>
+        <div className="text-center">
+          <h2 className="mb-5">Hello {user.username}, In this section you can find all your favourite recipes !</h2>
+          <div className="m-5">
+            <div className="card d-flex flex-row flex-wrap justify-content-center ">
+              {(
+                this.state.favoriteRecipes.length == 0 &&
+                <h5>You don't have any favourite recipes.</h5>
+              )}
+              {this.state.favoriteRecipes.length != 0 && this.state.favoriteRecipes.map((Recp) => {
+                return (
+                  <div className="m-2 border rounded">
                     <MiniRecipe key={Recp._id} recipe={Recp} initData={this.initData} />
-                  )
-                })}
-              </div>
+                  </div>
+                )
+              })}
             </div>
-          </section>
+          </div>
+
         </div>
       </section>
     )
