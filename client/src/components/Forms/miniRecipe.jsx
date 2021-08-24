@@ -16,7 +16,7 @@ class MiniRecipe extends Component {
         return (
             <div className="OneRecipe" key={this.state.recipe._id}>
                 <div className="RecipeName">
-                    <Link to={`/Recipes/${this.state.recipe._id}`} >
+                    <Link to={`/Recipes/${this.state.recipe._id}`}>
                         {this.state.recipe.name}
                     </Link>
                     <FavoriteBtn key={this.state.recipe._id} recipe={this.state.recipe} callback={this.state.initData} className="FavBtn" />

@@ -2,16 +2,19 @@ import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 
 class RatingForm extends Component {
-    
-constructor(props){
-super(props);
-this.handleChange = this.handleChange.bind(this)
-}
+
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this)
+        this.submitCallBack = this.props.submitCallBack;
+    }
     state = {
         recipeId: this.props.recipeId,
         rating: 3,
         comment: "",
     }
+
+    submitCallBack = null;
 
     handleChange(event) {
         const key = event.target.name;
@@ -28,8 +31,12 @@ this.handleChange = this.handleChange.bind(this)
             rating: this.state.rating,
             comment: this.state.comment,
         };
-        apiHandler.postRating(this.state.recipeId, rating);
+        await apiHandler.postRating(this.state.recipeId, rating);
+        if(this.submitCallBack){
+            this.submitCallBack();
+        }
     }
+
 
     render() {
         return (

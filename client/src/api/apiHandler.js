@@ -135,7 +135,13 @@ const apiHandler = {
             .then((res) => res.data)
             .catch(errorHandler);
     },
+
+    removeRating(id) {
+        return service
+            .delete(`/api/recipes/rating/${id}`)
+            .then((res) => res.data)
+            .catch(errorHandler);
+    }
+
 };
-
-
 export default apiHandler;

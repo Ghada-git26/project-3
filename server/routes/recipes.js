@@ -171,7 +171,16 @@ router.post("/rating/:id", auth.requireAuth, async(req, res, next) => {
     rating.user = res.locals.currentUser;
     var createdRating = await Rating.create(rating);
     await Recipe.updateOne({ _id: req.params.id }, { $push: { ratings: createdRating } });
-    res.status(201);
+    res.status(201).json({ message: 'Rating Added' });
 })
 
+router.delete("/rating/:id", auth.requireAdmin, async(req, res, next) => {
+    try {
+        await Rating.findByIdAndDelete(req.params.id);
+        res.status(201).json({ message: 'Rating Deleted' });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Error Occured' });
+    }
+});
 module.exports = router;

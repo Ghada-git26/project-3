@@ -11,13 +11,20 @@ class OneRecipe extends Component {
     constructor(props) {
         super(props)
         this.removeRecipe = this.removeRecipe.bind(this);
+        this.removeRating = this.removeRating.bind(this)
+        this.initData = this.initData.bind(this)
     }
 
     state = {
         Recipe: null,
+        initData: this.props.initData
     }
 
     componentDidMount() {
+        this.initData();
+    }
+
+    initData() {
         apiHandler.getRecipe(this.props.match.params.id)
             .then((response) => {
                 this.setState({
@@ -33,6 +40,12 @@ class OneRecipe extends Component {
         await apiHandler.removeRecipe(this.props.match.params.id);
         this.props.history.push("/Recipes");
     }
+
+    async removeRating(id) {
+        await apiHandler.removeRating(id);
+        this.initData();
+    }
+
 
     render() {
         if (this.state.Recipe) {
@@ -106,7 +119,14 @@ class OneRecipe extends Component {
                             {(
                                 this.state.Recipe.ratings.map((r) => {
                                     return (
-                                        <p>{r.comment} - {r.rating} </p>
+                                        <div>
+                                            <p key={this.comment}>{r.comment} - {r.rating} </p>
+
+                                            {(
+                                                this.props.context.isAdmin &&
+                                                <button type="button" className="btn-submit" onClick={() => this.removeRating(r._id)}>Delete</button>
+                                            )}
+                                        </div>
                                     )
                                 })
                             )}
@@ -117,9 +137,9 @@ class OneRecipe extends Component {
                         )}
                         {(
                             this.props.context.isLoggedIn && this.state.Recipe.canComment &&
-                            <RatingForm recipeId={this.state.Recipe._id} />
+                            <RatingForm recipeId={this.state.Recipe._id} submitCallBack={this.initData}/>
                         )}
-                        
+
                         {(
                             this.props.context.isAdmin &&
                             <div>
