@@ -44,8 +44,8 @@ class RatingForm extends Component {
             <div className="border rounded mt-3 p-2">
                 <p>Rate this Recipe !</p>
                 <form>
-                    <div class="form-group">
-                        <label for="rating">Rate</label>
+                    <div className="form-group">
+                        <label htmlFor="rating">Rate</label>
                         <select className="form-control" name="rating" value={this.state.rating} onChange={this.handleChange}>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -55,11 +55,11 @@ class RatingForm extends Component {
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="comment">Comment</label>
+                    <div className="form-group">
+                        <label htmlFor="comment">Comment</label>
                         <textarea className="form-control" name="comment" value={this.state.comment} onChange={this.handleChange} required></textarea>
                     </div>
-                    <div class="mt-2 rating-btns">
+                    <div className="mt-2 rating-btns">
                         <button type="button" className="btn btn-sm btn-outline-secondary" onClick={this.handleSubmit}>Submit</button>
                     </div>
                 </form>

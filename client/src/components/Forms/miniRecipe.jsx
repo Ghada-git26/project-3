@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 import "../../styles/MiniRecipe.css";
 
 class MiniRecipe extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     state = {
         recipe: this.props.recipe,
@@ -15,7 +12,7 @@ class MiniRecipe extends Component {
 
     render() {
         return (
-            <div className="OneRecipe" key={this.state.recipe._id}>
+            <div className="OneRecipe">
                 <div className="RecipeName">
                     <Link to={`/Recipes/Details/${this.state.recipe._id}`}>
                         {this.state.recipe.name}

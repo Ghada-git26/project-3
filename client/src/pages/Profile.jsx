@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 
 import MiniRecipe from "../components/Forms/miniRecipe";
@@ -46,13 +45,13 @@ class Profile extends Component {
           <div className="m-5">
             <div className="card d-flex flex-row flex-wrap justify-content-center ">
               {(
-                this.state.favoriteRecipes.length == 0 &&
+                this.state.favoriteRecipes.length === 0 &&
                 <h5>You don't have any favourite recipes.</h5>
               )}
-              {this.state.favoriteRecipes.length != 0 && this.state.favoriteRecipes.map((Recp) => {
+              {this.state.favoriteRecipes.length !== 0 && this.state.favoriteRecipes.map((Recp) => {
                 return (
-                  <div className="m-2 border rounded">
-                    <MiniRecipe key={Recp._id} recipe={Recp} initData={this.initData} />
+                  <div key={Recp._id}  className="m-2 border rounded">
+                    <MiniRecipe recipe={Recp} initData={this.initData} />
                   </div>
                 )
               })}

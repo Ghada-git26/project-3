@@ -11,8 +11,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  NavbarText
+  NavLink
 } from 'reactstrap';
 
 import { Link } from "react-router-dom";
@@ -38,14 +37,11 @@ const NavMain = (props) => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand to="/">
-          <NavLink tag={Link} to={`/`} >
+        <NavbarBrand tag={Link} to="/">
             <div className="app-logo">
               <img src={Hat} alt="" className="hat" />
               <h1 className="app-title">Gluten Free Recipes</h1>
             </div>
-          </NavLink >
-
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar className="justify-content-end">

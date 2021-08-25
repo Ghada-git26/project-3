@@ -8,7 +8,6 @@ class RecipeForm extends Component {
         this.handleNutritiousChange = this.handleNutritiousChange.bind(this);
     }
 
-
     componentDidMount() {
         if (this.props.match.params.id) {
             apiHandler.getRecipe(this.props.match.params.id)
@@ -41,7 +40,14 @@ class RecipeForm extends Component {
         cook: 0,
         category: "",
         difficulty: 0,
-        nutrition: {},
+        nutrition: {
+            kcal: '',
+            carbs: '',
+            fiber: '',
+            protein: '',
+            sugars: '',
+            salts: ''
+        },
         ingredients: [],
         title: "Create new Recipe"
     }
@@ -74,9 +80,10 @@ class RecipeForm extends Component {
     }
 
     handleIngredientsChange(e, index) {
-        this.state.ingredients[index] = e.target.value;
+        let ingredients = [...this.state.ingredients];
+        ingredients[index] = e.target.value;
         this.setState({
-            ingredients: [...this.state.ingredients]
+            ingredients: [ingredients]
         });
     };
 
@@ -121,126 +128,136 @@ class RecipeForm extends Component {
 
     render() {
         return (
-            <div className="">
-                <form className="form">
-                    <h2 className="title">{this.state.title}</h2>
+            <div className="container mb-3" style={{maxWidth: "850px"}}>
+                <div className="card">
+                    <form className="card-body">
+                        <h2 className="title">{this.state.title}</h2>
 
-                    <div className="mb-3">
-                     <label className="form-label" htmlFor="name">
-                            Name
-                        </label>
-                        <input
-                            id="name"
-                            className="input"
-                            type="text"
-                            onChange={this.handleChange}
-                            value={this.state.name}
-                            required
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label" htmlFor="image">
-                            Upload image
-                        </label>
-                        <input className="form-control" id="image" type="file" onChange={this.handleChange} />
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label" htmlFor="category">
-                            Category
-                        </label>
+                        <div className="form-group mb-3">
+                            <label className="form-label" htmlFor="name">
+                                Name
+                            </label>
+                            <input
+                                id="name"
+                                className="form-control"
+                                type="text"
+                                onChange={this.handleChange}
+                                value={this.state.name}
+                                required
+                            />
+                        </div>
+                        <div className="form-group mb-3">
+                            <label className="form-label" htmlFor="image">
+                                Upload image
+                            </label>
+                            <input className="form-control" id="image" type="file" onChange={this.handleChange} />
+                        </div>
+                        <div className="form-group mb-3">
+                            <label className="form-label" htmlFor="category">
+                                Category
+                            </label>
 
-                        <select id="category" className="form-select" value={this.state.category} onChange={this.handleChange} required>
-                            <option value="" disabled>
-                                Select a category
-                            </option>
-                            <option value="Main dish">Main Dish</option>
-                            <option value="Dessert">Dessert</option>
-                            <option value="Beverage">Beverage</option>
-                        </select>
-                    </div>
+                            <select id="category" className="form-select" value={this.state.category} onChange={this.handleChange} required>
+                                <option value="" disabled>
+                                    Select a category
+                                </option>
+                                <option value="Main dish">Main Dish</option>
+                                <option value="Dessert">Dessert</option>
+                                <option value="Beverage">Beverage</option>
+                            </select>
+                        </div>
 
-                    <div className="mb-3">
-                        <label className="form-label" htmlFor="prep">
-                            Preparation time
-                        </label>
-                        <input className="form-control" value={this.state.prep} className="input" id="prep" type="number" onChange={this.handleChange} />
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label" htmlFor="cook">
-                            Cooking time
-                        </label>
-                        <input className="form-control" value={this.state.cook} id="cook" type="number" onChange={this.handleChange} />
-                    </div>
+                        <div className="form-group mb-3">
+                            <label className="form-label" htmlFor="prep">
+                                Preparation time
+                            </label>
+                            <input className="form-control" value={this.state.prep} id="prep" type="number" onChange={this.handleChange} />
+                        </div>
+                        <div className="form-group mb-3">
+                            <label className="form-label" htmlFor="cook">
+                                Cooking time
+                            </label>
+                            <input className="form-control" value={this.state.cook} id="cook" type="number" onChange={this.handleChange} />
+                        </div>
 
-                    <div className="mb-3">
-                        <label className="form-label" htmlFor="category">
-                            Difficulty
-                        </label>
+                        <div className="form-group mb-3">
+                            <label className="form-label" htmlFor="category">
+                                Difficulty
+                            </label>
 
-                        <select id="difficulty" className="form-select" value={this.state.difficulty} onChange={this.handleChange} required>
-                            <option value="" disabled>
-                                Select a difficulty
-                            </option>
-                            <option value="1">Easy</option>
-                            <option value="2">More Effort</option>
-                            <option value="3">Challenging</option>
-                        </select>
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label" htmlFor="cook">
-                            Nutritious Values
-                        </label>
-                        <div className="mb-3">
-                        <label className="form-label" htmlFor="kcal">
-                        <input className="input" value={this.state.nutrition.kcal} id="kcal" type="number" onChange={this.handleNutritiousChange} placeholder="Kcal" />
-                        </label>
+                            <select id="difficulty" className="form-select" value={this.state.difficulty} onChange={this.handleChange} required>
+                                <option value="" disabled>
+                                    Select a difficulty
+                                </option>
+                                <option value="1">Easy</option>
+                                <option value="2">More Effort</option>
+                                <option value="3">Challenging</option>
+                            </select>
                         </div>
-                        <div className="mb-3">
-                        <label className="form-label" htmlFor="carbs">
-                        <input className="input" value={this.state.nutrition.carbs} id="carbs" type="number" onChange={this.handleNutritiousChange} placeholder="carbs" />
-                       </label>
+                        <div className="form-control mb-3">
+                            <label className="form-label" htmlFor="cook">
+                                Nutritious Values
+                            </label>
+                            <div className="form-group mb-3">
+                                <label className="form-label" htmlFor="kcal">
+                                    Kcal
+                                </label>
+                                <input className="form-control" value={this.state.nutrition.kcal} id="kcal" type="number" onChange={this.handleNutritiousChange} />
+                            </div>
+                            <div className="form-group mb-3">
+                                <label className="form-label" htmlFor="carbs">
+                                    Carbs
+                                </label>
+                                <input className="form-control" value={this.state.nutrition.carbs} id="carbs" type="number" onChange={this.handleNutritiousChange} />
+                            </div>
+                            <div className="form-group mb-3">
+                                <label className="form-label" htmlFor="fiber">
+                                    Fiber
+                                </label>
+                                <input className="form-control" value={this.state.nutrition.fiber} id="fiber" type="number" onChange={this.handleNutritiousChange}/>
+                            </div>
+                            <div className="form-group mb-3">
+                                <label className="form-label" htmlFor="protein">
+                                    Protein
+                                </label>
+                                <input className="form-control" value={this.state.nutrition.protein} id="protein" type="number" onChange={this.handleNutritiousChange} />
+                            </div>
+                            <div className="form-group mb-3">
+                                <label className="form-label" htmlFor="sugars">
+                                    Sugars
+                                </label>
+                                <input className="form-control" value={this.state.nutrition.sugars} id="sugars" type="number" onChange={this.handleNutritiousChange} />
+                            </div>
+                            <div className="form-group mb-3">
+                                <label className="form-label" htmlFor="salts">
+                                    Salts
+                                </label>
+                                <input className="form-control" value={this.state.nutrition.salts} id="salts" type="number" onChange={this.handleNutritiousChange}/>
+                            </div>
                         </div>
-                        <div className="mb-3">
-                        <label className="form-label" htmlFor="fiber">
-                        <input className="input" value={this.state.nutrition.fiber} id="fiber" type="number" onChange={this.handleNutritiousChange} placeholder="fiber" />
-                        </label>
+                        <div className="form-control mb-3">
+                            <label className="form-label" htmlFor="ingredients">
+                                Ingredients
+                            </label>
+                            {
+                                this.state.ingredients.map((ing, i) => {
+                                    return (
+                                        <div key={i} className="input-group mb-2">
+                                            <input
+                                                type="text" className="form-control" onChange={(e) => this.handleIngredientsChange(e, i)}
+                                                value={ing} placeholder="Add Recipe's Ingredients" />
+                                            <button className="btn btn-sm btn-outline-danger" type="button"
+                                                onClick={() => this.handleRemoveClick(i)}>Remove</button>
+                                        </div>)
+                                })
+                            }
                         </div>
-                        <div className="mb-3">
-                        <label className="form-label" htmlFor="protein">
-                        <input className="input" value={this.state.nutrition.protein} id="protein" type="number" onChange={this.handleNutritiousChange} placeholder="protein" />
-                        </label>
+                        <div className="flex justify-content-end">
+                            <button type="button" className="btn btn-sm btn-outline-success m-1" onClick={this.handleAddClick}>Add Ingredients</button>
+                            <button type="button" className="btn btn-sm btn-outline-primary m-1" onClick={this.handleSubmit}>Submit</button>
                         </div>
-                        <div className="mb-3">
-                        <label className="form-label" htmlFor="sugars">
-                        <input className="input" value={this.state.nutrition.sugars} id="sugars" type="number" onChange={this.handleNutritiousChange} placeholder="sugars" />
-                        </label>
-                        </div>
-                        <div className="mb-3">
-                        <label className="form-label" htmlFor="salts">
-                        <input className="input" value={this.state.nutrition.salts} id="salts" type="number" onChange={this.handleNutritiousChange} placeholder="salts" />
-                        </label>
-                        </div>
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label" htmlFor="ingredients">
-                            Ingredients
-                        </label>
-                        {
-                            this.state.ingredients.map((ing, i) => {
-                                return (
-                                <div  key={i} className="input-group mb-3">
-                                    <input 
-                                        type="text" className="form-control" onChange={(e) => this.handleIngredientsChange(e, i)}
-                                        value={ing} placeholder="Add Recipe's Ingredients"/>
-                                    <button class="btn btn-outline-danger" type="button"
-                                        onClick={() => this.handleRemoveClick(i)}>Remove</button>
-                                </div>)
-                            })
-                        }
-                        <button type="button" className="btn btn-outline-primary" onClick={this.handleAddClick}>Add Ingredients</button>
-                    </div>
-                    <button type="button" className="btn btn-outline-primary" onClick={this.handleSubmit}>Submit</button>
-                </form>
+                    </form>
+                </div>
             </div>
         );
     }

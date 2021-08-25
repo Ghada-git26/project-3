@@ -123,7 +123,7 @@ class OneRecipe extends Component {
                                 {(
                                     this.state.Recipe.ratings.map((r) => {
                                         return (
-                                            <div className="border rounded m-1 p-2">
+                                            <div className="border rounded m-1 p-2" key={r._id}>
                                                 <div >
                                                     <p>
                                                         <small>

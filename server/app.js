@@ -71,11 +71,18 @@ app.use("/api/users", require("./routes/users"));
 app.use("/api/recipes", require("./routes/recipes"));
 
 // 404 Middleware
-app.use((req, res, next) => {
+app.use("/api/*", (req, res, next) => {
     const error = new Error("Ressource not found.");
     error.status = 404;
     next(error);
 });
+
+
+if (process.env.NODE_ENV === "production") {
+    app.use("*", (req, res, next) => {
+        res.sendFile(path.join(__dirname, "public/build/index.html"))
+    })
+}
 
 // Error handler middleware
 // If you pass an argument to your next function in any of your routes or middlewares
