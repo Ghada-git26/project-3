@@ -12,7 +12,8 @@
         "react-dom": "^16.14.0",
         "react-router-dom": "^5.1.2",
         "react-scripts": "^4.0.3",
-        "reactstrap": "^8.9.0"
+        "reactstrap": "^8.9.0",
+        "sweetalert": "^2.1.2"
     },
     "scripts": {
         "start": "CHOKIDAR_USEPOLLING=true react-scripts start",

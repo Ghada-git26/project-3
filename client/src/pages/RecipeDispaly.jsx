@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import apiHandler from '../../api/apiHandler'
-import MiniRecipe from "./miniRecipe";
+import apiHandler from '../api/apiHandler'
+import MiniRecipe from "../components/miniRecipe";
 
 class RecipeDispaly extends Component {
     constructor(props) {

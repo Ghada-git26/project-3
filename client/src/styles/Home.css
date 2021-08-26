@@ -28,3 +28,22 @@
     background-size: cover;
     margin-top: 50px;
 }
+
+.home-img {
+    max-width: 450px;
+    max-height: 450px;
+    min-width: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 450px;
+    margin: auto;
+}
+
+.home-title {
+    font-family: 'Rampart One';
+}
+
+.home-bg {
+    background-color: rgb(139 225 156 / 21%)!important;
+}

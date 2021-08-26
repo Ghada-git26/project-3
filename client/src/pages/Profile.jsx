@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withUser } from "../components/Auth/withUser";
 
-import MiniRecipe from "../components/Forms/miniRecipe";
+import MiniRecipe from "../components/miniRecipe";
 
 
 import apiHandler from "../api/apiHandler";

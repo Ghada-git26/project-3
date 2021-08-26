@@ -63,3 +63,9 @@ ul {
     background-size: 20px;
     background-repeat: repeat-x;
 }
+
+.login-form {
+    width: 340px;
+    margin: 50px auto;
+    padding: 30px;
+}

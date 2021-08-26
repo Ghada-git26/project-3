@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import "../../styles/FavoriteBtn.css"
 import apiHandler from '../../api/apiHandler'
+import { withUser } from "../Auth/withUser";
+import swal from 'sweetalert';
 
 class FavoriteBtn extends Component {
     constructor(props) {
@@ -20,20 +22,25 @@ class FavoriteBtn extends Component {
     callback = null;
 
     async handleFavouriteClick() {
-        if (this.state.recipe.isUserFavourite) {
-            await apiHandler.unsetFavRecipe(this.state.recipe._id);
+        if(this.props.context.isLoggedIn){
+            if (this.state.recipe.isUserFavourite) {
+                await apiHandler.unsetFavRecipe(this.state.recipe._id);
+                
+            } else {
+                await apiHandler.setFavRecipe(this.state.recipe._id);
+            }
+            this.state.recipe.isUserFavourite = !this.state.recipe.isUserFavourite;
+            this.setState({
+                recipe: {...this.state.recipe}
+            });
             
-        } else {
-            await apiHandler.setFavRecipe(this.state.recipe._id);
+            if (this.callback) {
+                this.callback();
+            }
+        }else{
+            swal("You're not logged In", "You need to log in to save favourites to your profile!", "warning");
         }
-        this.state.recipe.isUserFavourite = !this.state.recipe.isUserFavourite;
-        this.setState({
-            recipe: {...this.state.recipe}
-        });
         
-        if (this.callback) {
-            this.callback();
-        }
     }
 
     render() {
@@ -96,4 +103,4 @@ class FavoriteBtn extends Component {
 
 }
 
-export default FavoriteBtn;
+export default withUser(FavoriteBtn);

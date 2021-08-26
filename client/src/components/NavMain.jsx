@@ -14,10 +14,10 @@ import {
   NavLink
 } from 'reactstrap';
 
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 const NavMain = (props) => {
-  const { context } = props;
+  const { context, history } = props;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -28,6 +28,7 @@ const NavMain = (props) => {
       .logout()
       .then(() => {
         context.removeUser();
+        history.push("/");
       })
       .catch((error) => {
         console.log(error);
@@ -38,17 +39,19 @@ const NavMain = (props) => {
     <div>
       <Navbar color="light" light expand="md">
         <NavbarBrand tag={Link} to="/">
-            <div className="app-logo">
-              <img src={Hat} alt="" className="hat" />
-              <h1 className="app-title">Gluten Free Recipes</h1>
-            </div>
+          <div className="app-logo">
+            <img src={Hat} alt="" className="hat" />
+            <h1 className="app-title">Gluten Free Recipes</h1>
+          </div>
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar className="justify-content-end">
           <Nav className="mr-auto" navbar>
-            <NavItem>
-              <SearchBar></SearchBar>
-            </NavItem>
+            {(window.location.pathname !== "/" &&
+              <NavItem>
+                <SearchBar></SearchBar>
+              </NavItem>
+            )}
             <NavItem>
               <NavLink tag={Link} to={`/Recipes`} >All Recipes</NavLink >
             </NavItem>
@@ -66,7 +69,7 @@ const NavMain = (props) => {
                   </NavItem>
                 )}
                 <NavItem>
-                  <p className="nav-NavItemnk nav-link" onClick={handleLogout}>Logout</p>
+                  <p className="nav-NavItemnk nav-link" onClick={() => handleLogout()}>Logout</p>
                 </NavItem>
               </React.Fragment>
             )}
@@ -87,4 +90,4 @@ const NavMain = (props) => {
   );
 };
 
-export default withUser(NavMain);
+export default withRouter(withUser(NavMain));

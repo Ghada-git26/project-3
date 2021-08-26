@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import apiHandler from '../../api/apiHandler'
-import "../../styles/OneRecipe.css"
-import { withUser } from "../Auth/withUser";
-import FavoriteBtn from "./FavoriteBtn";
-import RatingForm from "./RatingForm";
+import apiHandler from '../api/apiHandler'
+import "../styles/OneRecipe.css"
+import { withUser } from "../components/Auth/withUser";
+import FavoriteBtn from "../components/Forms/FavoriteBtn";
+import RatingForm from "../components/Forms/RatingForm";
 
 class OneRecipe extends Component {
     constructor(props) {

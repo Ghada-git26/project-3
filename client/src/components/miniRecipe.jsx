@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import FavoriteBtn from "./FavoriteBtn";
+import FavoriteBtn from "./Forms/FavoriteBtn";
 import { Link } from "react-router-dom";
-import "../../styles/MiniRecipe.css";
+import "../styles/MiniRecipe.css";
 
 class MiniRecipe extends Component {
 

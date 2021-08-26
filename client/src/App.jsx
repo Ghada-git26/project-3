@@ -6,12 +6,12 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
-import RecipeDispaly from "./components/Forms/RecipeDispaly";
+import RecipeDispaly from "./pages/RecipeDispaly";
 import "./styles/AllRecipes.css"
-import OneRecipe from "./components/Forms/OneRecipe";
+import OneRecipe from "./pages/OneRecipe";
 import RecipeForm from "./components/Forms/RecipeForm";
 import AdminRoute from "./components/AdminRoute";
-import Searchresults from "./components/Forms/SearchResults";
+import Searchresults from "./pages/SearchResults";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 

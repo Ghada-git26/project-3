@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter, Redirect, Link } from "react-router-dom";
 import apiHandler from "../../api/apiHandler";
 import { withUser } from "../Auth/withUser";
 
@@ -37,15 +37,24 @@ class FormSignin extends Component {
     }
 
     return (
-      <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-        <h2>Signin</h2>
-        <label htmlFor="email">Email</label>
-        <input type="email" id="email" name="email" />
-        <label htmlFor="password">Password</label>
-        <input type="password" id="password" name="password" />
-        <button>Submit</button>
-      </form>
 
+      <div className="login-form card shadow">
+        <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+          <h2 className="text-center">Sign in</h2>
+          <div className="form-group">
+            <label>Email</label>
+            <input type="email" id="email" name="email" className="form-control" placeholder="Email" required="required" />
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input type="password" className="form-control" id="password" name="password" placeholder="Password" required="required" />
+          </div>
+          <div className="mt-2 text-center">
+            <button type="submit" className="btn btn-outline-primary">Sign In</button>
+            <p className="text-center mt-2">Not a user? <Link to="/signup">Sign Up</Link></p>
+          </div>
+        </form>
+      </div>
     )
   };
 }
