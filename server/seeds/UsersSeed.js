@@ -25,7 +25,7 @@ const users = [{
 ];
 
 mongoose
-    .connect(process.env.MONGODB_URI, {
+    .connect('mongodb+srv://Ghada:00120AG@cluster0.kem78.mongodb.net/glutenReactdB?retryWrites=true&w=majority', {
         useNewUrlParser: true,
         useCreateIndex: true,
     })

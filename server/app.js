@@ -80,7 +80,7 @@ app.use("/api/*", (req, res, next) => {
 
 if (process.env.NODE_ENV === "production") {
     app.use("*", (req, res, next) => {
-        res.sendFile(path.join(__dirname, "public/build/index.html"))
+        res.sendFile(path.join(__dirname, "public/index.html"))
     })
 }
 
